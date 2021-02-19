@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 
 import states.DisableBtnState;
 import states.State;
+import states.color.DarkModeState;
 import states.color.LightModeState;
 import states.color.StateColor;
 import thread.color.ThreadColor;
@@ -34,7 +35,7 @@ public class TodoMediator {
 	private TodoInput todoInput;
 	private Todos todos;
 	private Actions actions;
-	private TodoFrame TodoFrame = new TodoFrame(this);
+	private TodoFrame TodoFrame;
 	
 	private boolean changeColor = false;
 	private boolean color = true;	
@@ -42,6 +43,7 @@ public class TodoMediator {
 	
 	public TodoMediator() {
 		ThreadColorCheck();
+		TodoFrame = new TodoFrame(this);
 		btnState = new DisableBtnState(this);
 		clrState = new LightModeState(this);
 		createGUI();
@@ -51,10 +53,7 @@ public class TodoMediator {
 	public void ThreadColorCheck() {         
          //USING TIMER
          Timer timer = new Timer();
-         timer.schedule(new ThreadColor(this),30*60*1000,30*60*1000);
-         //30 minutes = 30*60*1000
-         //2 minutes = 2*60*1000
-         //2 seconds = 2000
+         timer.schedule(new ThreadColor(this),1000,1000);
 	}
 	
 	

@@ -20,16 +20,16 @@ public class ThreadColor extends TimerTask {
 	
 	public void checkingHour() {
 		Date date = Calendar.getInstance().getTime();  
-		DateFormat dateFormat = new SimpleDateFormat("mm");  
+		DateFormat dateFormat = new SimpleDateFormat("HH");  
 
 	    int hour = Integer.parseInt(dateFormat.format(date));
 	       
-	    System.out.println("Current Hour : " + hour); 
-	    if(hour == 18 && colorStatus == 0) {
-	    	colorStatus = 1;
-	       	turnToDark();
-	     }else if(hour == 6 && colorStatus == 1) {
+//	    System.out.println("Current Hour : " + hour); 
+	    if((hour >= 18 || hour < 6) && colorStatus == 1) {
 	    	colorStatus = 0;
+	       	turnToDark();
+	     }else if((hour >= 6 && hour < 18) && colorStatus == 0) {
+	    	colorStatus = 1;
 	    	turnToLight();
 	     }
 	}
